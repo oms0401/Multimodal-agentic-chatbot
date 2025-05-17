@@ -57,7 +57,7 @@ To run Ava, you'll need to configure the following API keys. Ensure you have acc
 **Important:** Keep your `.env` file private and do not commit it to your version control system to prevent exposing your API keys. It's usually added to your `.gitignore` file.
 
 3. Run the command
-    "powershell.exe -command "./run_tasks.bat" 
+* "powershell.exe -command "./run_tasks.bat" 
 
 This commands executes the bat file but make sure to install the docker desktop
 
