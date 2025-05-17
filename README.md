@@ -29,11 +29,34 @@ This project leverages a range of powerful technologies:
 * **Vision Language Model:** Integrates **llama-3.2-vision** for understanding image content.
 * **Web Interface:** Built with **Chainlit** for interactive chat sessions.
 
-## Getting started
- 
-First configure the api key in the .env file 
+## Getting Started
 
-Run the command - powershell.exe -command "./run_tasks.bat" 
+To run Ava, you'll need to configure the following API keys. Ensure you have accounts and obtain the necessary credentials from the respective providers.
+
+1.  **Create a `.env` file** in the root directory of the project. This file will store your sensitive API keys.
+
+2.  **Add the following API keys to your `.env` file in the specified format:**
+
+    ```
+    GROQ_API_KEY=YOUR_GROQ_API_KEY_HERE
+    ELEVENLABS_API_KEY=YOUR_ELEVENLABS_API_KEY_HERE
+    QDRANT_CLOUD_URL=YOUR_QDRANT_CLOUD_URL_HERE
+    QDRANT_API_KEY=YOUR_QDRANT_API_KEY_HERE
+    # For local Qdrant, you might not need a cloud URL or API key
+
+
+
+    * Replace `YOUR_GROQ_API_KEY_HERE` with your actual Groq API key. You can obtain this from the Groq console.
+    * Replace `YOUR_ELEVENLABS_API_KEY_HERE` with your ElevenLabs API key. You can find this in your ElevenLabs profile.
+    * Replace `YOUR_QDRANT_CLOUD_URL_HERE` with the URL of your Qdrant Cloud instance (if you're using the cloud version).
+    * Replace `YOUR_QDRANT_API_KEY_HERE` with the API key for your Qdrant Cloud instance (if applicable). If you're running Qdrant locally, you might not need these.
+
+
+
+
+**Important:** Keep your `.env` file private and do not commit it to your version control system to prevent exposing your API keys. It's usually added to your `.gitignore` file.
+
+3. Run the command - powershell.exe -command "./run_tasks.bat" 
 
 This commands executes the bat file but make sure to install the docker desktop
 
