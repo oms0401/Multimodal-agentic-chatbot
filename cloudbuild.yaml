@@ -1,0 +1,23 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', '$LOCATION-docker.pkg.dev/$PROJECT_ID/ava-app/app:latest', '-f', 'Dockerfile', '.']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', '$LOCATION-docker.pkg.dev/$PROJECT_ID/ava-app/app:latest']
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'ava', 
+  '--image', '$LOCATION-docker.pkg.dev/$PROJECT_ID/ava-app/app:latest', 
+  '--port', '8080',
+  '--region', '$LOCATION',
+  '--platform', 'managed',
+  '--allow-unauthenticated',
+  '--project', '$PROJECT_ID',
+  '--memory', '4Gi',
+  '--min-instances', '1',
+  '--max-instances', '1',
+  '--timeout', '120',
+  '--add-volume', 'name=short-term-memory,type=in-memory,size-limit=1Gi',
+  '--add-volume-mount', 'volume=short-term-memory,mount-path=/app/data',
+  '--update-secrets', 'WHATSAPP_VERIFY_TOKEN=WHATSAPP_VERIFY_TOKEN:latest,WHATSAPP_PHONE_NUMBER_ID=WHATSAPP_PHONE_NUMBER_ID:latest,WHATSAPP_TOKEN=WHATSAPP_TOKEN:latest,GROQ_API_KEY=GROQ_API_KEY:latest,ELEVENLABS_API_KEY=ELEVENLABS_API_KEY:latest,ELEVENLABS_VOICE_ID=ELEVENLABS_VOICE_ID:latest,TOGETHER_API_KEY=TOGETHER_API_KEY:latest,QDRANT_URL=QDRANT_URL:latest,QDRANT_API_KEY=QDRANT_API_KEY:latest']
+images:
+- $LOCATION-docker.pkg.dev/$PROJECT_ID/ava-app/app:latest
